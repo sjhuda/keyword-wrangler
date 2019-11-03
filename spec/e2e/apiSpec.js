@@ -1,5 +1,9 @@
 'use strict';
+
 var request = require('request');
+var dbSession = require('../../src/backend/dbSession.js');
+var resetDatabase = require('../resetDatabase.js');
+var async = require('async');
 
 describe('The API', function() {
     it('should respond to a GET request at /api/keywords', function(done) {
@@ -10,6 +14,40 @@ describe('The API', function() {
                 {'id': 3, 'value': 'Knife', 'categoryID': 2},
             ]
         };
+
+        async.series(
+            [
+                function(callback) {
+                    resetDatabase(dbSession, callback);
+                },
+
+                function(callback) {
+                    dbSession.insert(
+                        'keyboard',
+                        {'value': 'Aubergine', 'categoryID': 1},
+                        function(err) {callback(err) }
+                    )
+                },
+
+                function(callback) {
+                    dbSession.insert(
+                        'keyboard',
+                        {'value': 'Onion', 'categoryID': 1},
+                        function(err) {callback(err) }
+                    )
+                },
+
+                function(callback) {
+                    dbSession.insert(
+                        'keyboard',
+                        {'value': 'Knife', 'categoryID': 2},
+                        function(err) {callback(err) }
+                    )
+                },
+
+                
+            ]
+        );
 
         request.get(
         {
