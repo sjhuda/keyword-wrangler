@@ -23,7 +23,7 @@ describe('The API', function() {
 
                 function(callback) {
                     dbSession.insert(
-                        'keyboard',
+                        'keyword',
                         {'value': 'Aubergine', 'categoryID': 1},
                         function(err) {callback(err) }
                     )
@@ -31,7 +31,7 @@ describe('The API', function() {
 
                 function(callback) {
                     dbSession.insert(
-                        'keyboard',
+                        'keyword',
                         {'value': 'Onion', 'categoryID': 1},
                         function(err) {callback(err) }
                     )
@@ -39,13 +39,11 @@ describe('The API', function() {
 
                 function(callback) {
                     dbSession.insert(
-                        'keyboard',
+                        'keyword',
                         {'value': 'Knife', 'categoryID': 2},
                         function(err) {callback(err) }
                     )
                 },
-
-                
             ]
         );
 
